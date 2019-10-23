@@ -1,0 +1,12 @@
+hs_err_pid*
+target/
+.idea
+.mvn
+*.iml
+.DS_Store
+.classpath
+.project
+logs
+*.log
+mvnw
+mvnw.cmd

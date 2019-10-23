@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: admin-server
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+server:
+  port: 8769
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: http://iot-eureka-server-1:18761/eureka/,http://iot-eureka-server-2:28761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+#spring.mail.host: smtp.163.com
+#spring.mail.username: miles02
+#spring.mail.password:
+#spring.boot.admin.notify.mail.to: 308056797@qq.com
